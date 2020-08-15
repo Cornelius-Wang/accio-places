@@ -1,0 +1,60 @@
+body {
+
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    
+}
+
+form {
+
+    display: inline-block;
+    margin: 1em auto 1em auto;
+    text-align: left;    
+    
+}
+
+ul {
+
+    padding: 1em;
+    list-style-type: none;
+
+}
+
+section h2 {
+
+    padding-left: 0.7em;
+
+}
+
+.top {
+
+    background-color: wheat;
+    margin: 1em;
+    padding: 1em;
+    text-align: center;
+
+}
+
+.address {
+
+    font-size: 12px;
+    margin: 0;
+    padding: 0;
+
+}
+
+.results {
+
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+
+}
+
+.hidden {
+
+    display: none;
+
+}
