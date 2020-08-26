@@ -2,6 +2,7 @@ const mashvisorKey = "6875b662-8801-4be1-a329-391e54c2c507";
 const mashvisorUrl = "https://api.mashvisor.com/v1.1/client/city/properties/";
 const mapboxKey = "pk.eyJ1IjoiY29yeXdhbmcxMSIsImEiOiJja2RydmlhMWkwZnJxMndudXBsdGd2aDhtIn0.zlOoazi-NxpUgUbqoN_EZQ";
 const mapboxUrl = "";
+const proxyUrl = "https://ancient-inlet-96238.herokuapp.com/";
 
 function formatQueryParams(params) {
     
@@ -17,8 +18,10 @@ function getPlaces(stateCode, city) {
   
     console.log(url);
   
-    fetch(url, {
-      headers: {"x-api-key": mashvisorKey}
+    fetch(proxyUrl + url, {
+      headers: {
+        "x-api-key": mashvisorKey,
+      }
     })
       .then(response => {
         if (response.ok) {
@@ -32,6 +35,8 @@ function getPlaces(stateCode, city) {
         $('.result-title').text(`Something went wrong: ${error.message}`);
       });
   }
+
+
 
   // function getMap(x, y) {
   //   const params = {
@@ -58,21 +63,29 @@ function getPlaces(stateCode, city) {
   //     });
   // }
 
-function templatePlaceHtml(neighborhood, placeAddress, listPrice, size, baths, beds, lastSaleDate, lastSalePrice, capRate, placeImage){
+function templatePlaceHtml(neighborhood, placeAddress, listPrice, size, baths, beds, lastSaleDate, lastSalePrice, capRate, placeImage, mapNumber){
 
     return `<li class="place">
-    <img href="${placeImage} class="place-photo">
-    <h3 class="place-title">${neighborhood}</h3>
+    <div class="place-image"><img src="${placeImage}" class="place-photo"></div>
+    <div class="place-text"><h3 class="place-title">${neighborhood}</h3>
     <p class="place-detail">${placeAddress} | ${listPrice}</p>
-    <p class="place-detail">${baths} | ${beds} | ${size} | ${capRate}</p>
-    <p class="place-detail">${lastSaleDate} | ${lastSalePrice}</p>
+    <p class="place-detail"> BR ${beds} | BA ${baths} | Sq ft. ${size} | Cap Rate ${capRate}</p></div>
+    <div id="mapid-${mapNumber}"></div>
     </li>
     
     <br>`
 
 }
 
-function loopPark(placeObject) {
+function drawMap(latitude, longitude, number){
+
+  let travereString = 'mapid-' + number.toString(); 
+  console.log(latitude,longitude,travereString);
+  L.map(travereString).setView([latitude, longitude], 13);
+
+}
+
+function loopPlace(placeObject) {
 
     $('#result-list').empty();
     console.log(placeObject)
@@ -87,18 +100,23 @@ function loopPark(placeObject) {
         currentPlace.list_price_formatted, 
         currentPlace.sqft, 
         currentPlace.baths, 
-        currentPlace.beds, 
+        currentPlace.beds,
         currentPlace.last_sale_date, 
         currentPlace.last_sale_price,
         currentPlace.traditional_cap,
-        currentPlace.image);
+        currentPlace.image,
+        i);
 
         $('#result-list').append(html);
+      
+      drawMap(currentPlace.latitude, currentPlace.longitude, i);
 
     };
     $('.results').removeClass('hidden');
 
 }
+
+
 
 
 function displayPlaces(responseJson) {

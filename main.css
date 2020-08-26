@@ -28,6 +28,12 @@ section h2 {
 
 }
 
+#mapid { 
+    
+    height: 180px; 
+
+}
+
 .top {
 
     background-color: wheat;
@@ -53,8 +59,42 @@ section h2 {
 
 }
 
+.results h2 {
+
+    text-align: center;
+
+}
+
 .hidden {
 
     display: none;
+
+}
+
+.place {
+
+    display: flex;
+    text-align: center;
+
+}
+
+.place-image {
+
+    float: left;
+
+}
+
+.place-text {
+
+    display:flex;
+    flex-direction: column;
+    float: right;
+    align-items: center;
+
+}
+
+.place-photo {
+
+    width: 80%;
 
 }
