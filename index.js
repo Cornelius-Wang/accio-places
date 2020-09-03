@@ -140,7 +140,7 @@ function getStats(stateCode, city) {
 function templateStatsHtml(avgPrice, sqft, totalProperties, occupancy, coc, rent, city) {
 
   return `<li class="stats">
-  <div class="stats-text"><h3 class="stats-title">${city}</h3>
+  <div class="stats-text">
   <p class="stats-detail">Average Listing Price ${avgPrice} | Average Square Footage ${sqft} </p>
   <p class="stats-detail"> Total properties: ${totalProperties} | Occupancy Rate ${occupancy} </p>
   <p class="stats-detail"> Cash on Cash: ${coc} | Ave Rent Price: ${rent} </p></div>
