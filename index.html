@@ -5,13 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Accio Places</title>
     <link href="main.css" rel="stylesheet" type="text/css">
-    <!-- Leaflet Stylesheet and Script Source for map functionality -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
-        integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
-        crossorigin=""/>
-    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
-        integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
-        crossorigin=""></script>
+    <!-- Leaflet Stylesheet map styling -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
 </head>
 <body>
     <div class="container">
@@ -20,25 +16,37 @@
             <h1>Accio Places</h1>
         </div>
     </header>
-            <form id="js-form">
+            <form id="js-form" class='input-fields'>
                 <label for="city">City</label>
-                <input type="text" name="city" id="city-search" placeholder="Los Angeles, Boston, New York, etc." required>
+                <input type="text" name="city" id="city-search" placeholder="Los Angeles, New York, etc." required>
                 <br>
                 
                 <label for="state-search">State Code</label>
-                <input type="text" name="state-search" id="state-search" maxlength="2" placeholder="CA, MA, NY" required>
+                <input type="text" class="small-fields" name="state-search" id="state-search" maxlength="2" required>
 
                 <input type="submit" value="Search">
             </form>
         
+        <div class="result-boxes">
 
-        <section id="js-results" class="results hidden">
+            <section id="js-stats" class="stats hidden">
 
-            <h2>Places Nearby:</h2>
+                <h2>City Statistics:</h2>
+
+                <ul id="stats-list" class="stats-list"></ul>
+
+            </section>
+
+            <section id="js-results" class="results hidden">
+
+                <h2>Places Nearby:</h2>
         
-            <ul id="result-list" class="result-list"></ul>
-        </section>
-        
+                <ul id="result-list" class="result-list"></ul>
+
+            </section>
+
+        </div>
+
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="index.js"></script>
