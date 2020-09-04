@@ -16,17 +16,22 @@
             <h1>Accio Places</h1>
         </div>
     </header>
+
+        <div class="start-form">
+            <div class="intro-text">
+                <p>This application uses the Mashvisor API to grab current real-estate data and compares it against real-time listings for a US city.</p>
+            </div>
             <form id="js-form" class='input-fields'>
                 <label for="city">City</label>
                 <input type="text" name="city" id="city-search" placeholder="Los Angeles, New York, etc." required>
                 <br>
-                
                 <label for="state-search">State Code</label>
                 <input type="text" class="small-fields" name="state-search" id="state-search" maxlength="2" required>
 
                 <input type="submit" value="Search">
             </form>
-        
+        </div>
+
         <div class="result-boxes">
 
             <section id="js-stats" class="stats hidden">

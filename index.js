@@ -39,11 +39,14 @@ function getPlaces(stateCode, city, numResults) {
 
 function templatePlaceHtml(neighborhood, placeAddress, listPrice, size, baths, beds, capRate, placeImage, mapNumber){
 
+  console.log("Image URL", placeImage);
+
     return `<li class="place">
     <div class="place-image"><img src="${placeImage}" class="place-photo"></div>
     <div class="place-text"><h3 class="place-title">${neighborhood}</h3>
     <p class="place-detail">${placeAddress} | ${listPrice}</p>
-    <p class="place-detail"> BR ${beds} | BA ${baths} | Sq ft. ${size} | Cap Rate ${capRate}</p></div>
+    <p class="place-detail"> BR ${beds} | BA ${baths}</p>
+    <p class="place-detail">${size} ft<sup>2</sup> | Cap Rate ${capRate}</p></div>
     <div id="map-${mapNumber}"></div>
     </li>
     
@@ -74,27 +77,26 @@ function templatePlaceHtml(neighborhood, placeAddress, listPrice, size, baths, b
 function loopPlace(placeObject) {
 
     $('#result-list').empty();
-    console.log(placeObject)
+    console.log("Properties Object", placeObject)
 
     for (let i = 0; i < placeObject.content.properties.length; i++) {
 
       const currentPlace = placeObject.content.properties[i];
+      const imgUrl = currentPlace.image
 
-      const placeHtml = templatePlaceHtml(
+      console.log("Image ULR, Cap Rate", currentPlace.image, currentPlace.traditional_cap);
+
+        const placeHtml = templatePlaceHtml(
         currentPlace.neighborhood,
         currentPlace.address, 
         currentPlace.list_price_formatted, 
         currentPlace.sqft, 
         currentPlace.baths, 
         currentPlace.beds,
-        currentPlace.last_sale_date, 
-        currentPlace.last_sale_price,
         currentPlace.traditional_cap,
-        currentPlace.image,
+        imgUrl,
         i);
-
         $('#result-list').append(placeHtml);
-      
       // drawPlaceMap(currentPlace.latitude, currentPlace.longitude, i);
 
     };
@@ -136,17 +138,29 @@ function getStats(stateCode, city) {
     });
 }
 
+// "city" parameter in template Stats HTML left purposefully unused for future addition and styling
 
 function templateStatsHtml(avgPrice, sqft, totalProperties, occupancy, coc, rent, city) {
 
   return `<li class="stats">
   <div class="stats-text">
-  <p class="stats-detail">Average Listing Price ${avgPrice} | Average Square Footage ${sqft} </p>
-  <p class="stats-detail"> Total properties: ${totalProperties} | Occupancy Rate ${occupancy} </p>
-  <p class="stats-detail"> Cash on Cash: ${coc} | Ave Rent Price: ${rent} </p></div>
+  <p class="stats-detail">Average Listing Price $${avgPrice}</p>
+  <p class="stats-detail">Average Square Footage ${sqft}</p>
+  <p class="stats-detail">Total properties: ${totalProperties}</p>
+  <p class="stats-detail">Occupancy Rate ${occupancy} </p>
+  <p class="stats-detail">Cash on Cash: ${coc}</p>
+  <p class="stats-detail">Ave Rent Price: ${rent} </p></div>
   </li>
   
   <br>`
+
+}
+
+function formatNumber(number) {
+
+  var parts = number.toString().split(".");
+  parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  return parts.join(".");
 
 }
 
@@ -156,10 +170,11 @@ function renderStats(statsObject, city) {
     
     const currentStats = statsObject.content;
     const totalProperties = currentStats.investment_properties + currentStats.airbnb_properties + currentStats.traditional_properties;
-    console.log(totalProperties);
+    console.log("Number of Properties", totalProperties);
+    const formPrice = formatNumber(currentStats.median_price);
 
     const statsHtml = templateStatsHtml(
-      currentStats.median_price,
+      formPrice,
       currentStats.sqft,
       totalProperties,
       currentStats.occupancy,
