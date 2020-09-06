@@ -1,6 +1,8 @@
+
+
 header {
 
-    margin: 0;
+    margin: 0 auto;
 
 }
 
@@ -24,12 +26,6 @@ ul {
 
     padding: 1em;
     list-style-type: none;
-
-}
-
-section h2 {
-
-    padding-left: 0.7em;
 
 }
 
@@ -109,8 +105,7 @@ h1 {
 
 .results {
 
-    display: table;
-    margin: 0 auto;
+    width: 60%
 
 }
 
@@ -121,9 +116,24 @@ h1 {
 
 }
 
+section h2 {
+
+    display: flex;
+    justify-content: center;
+
+}
+
 .stats {
 
-    width: 40%;
+    width: 20%;
+    text-align: center;
+    margin-left: 10em;
+
+}
+
+.stats-detail {
+
+    font-size: 11px;
 
 }
 
@@ -136,7 +146,18 @@ h1 {
 .place {
 
     display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
     text-align: center;
+
+}
+
+.place-tile {
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
 
 }
 
@@ -144,14 +165,21 @@ h1 {
 
     display: flex;
     flex-direction: column;
-    float: right;
-    align-items: center;
+    justify-content: space-around;
     font-size: 11px;
+    padding-left: 10px;
+
+}
+
+.place-details {
+
+    margin: 0 0 0 0;
+    padding: 0 0 0 0;
 
 }
 
 .place-photo {
 
-    width: 100px;
+    width: 150px;
 
 }

@@ -39,17 +39,15 @@ function getPlaces(stateCode, city, numResults) {
 
 function templatePlaceHtml(neighborhood, placeAddress, listPrice, size, baths, beds, capRate, placeImage, mapNumber){
 
-  console.log("Image URL", placeImage);
-
-    return `<li class="place">
+    return `<div class="place-tile">
     <div class="place-image"><img src="${placeImage}" class="place-photo"></div>
     <div class="place-text"><h3 class="place-title">${neighborhood}</h3>
     <p class="place-detail">${placeAddress} | ${listPrice}</p>
     <p class="place-detail"> BR ${beds} | BA ${baths}</p>
     <p class="place-detail">${size} ft<sup>2</sup> | Cap Rate ${capRate}</p></div>
     <div id="map-${mapNumber}"></div>
-    </li>
-    
+    </div>
+
     <br>`
 
 }
@@ -142,15 +140,15 @@ function getStats(stateCode, city) {
 
 function templateStatsHtml(avgPrice, sqft, totalProperties, occupancy, coc, rent, city) {
 
-  return `<li class="stats">
+  return `
   <div class="stats-text">
   <p class="stats-detail">Average Listing Price $${avgPrice}</p>
   <p class="stats-detail">Average Square Footage ${sqft}</p>
   <p class="stats-detail">Total properties: ${totalProperties}</p>
   <p class="stats-detail">Occupancy Rate ${occupancy} </p>
   <p class="stats-detail">Cash on Cash: ${coc}</p>
-  <p class="stats-detail">Ave Rent Price: ${rent} </p></div>
-  </li>
+  <p class="stats-detail">Ave Rent Price: ${rent} </p>
+  </div>
   
   <br>`
 
