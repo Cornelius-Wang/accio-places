@@ -4,6 +4,8 @@ const mashvisorUrlStats = "https://api.mashvisor.com/v1.1/client/city/investment
 const mapboxKey = "pk.eyJ1IjoiY29yeXdhbmcxMSIsImEiOiJja2RydmlhMWkwZnJxMndudXBsdGd2aDhtIn0.zlOoazi-NxpUgUbqoN_EZQ";
 const mapboxUrl = "";
 const proxyUrl = "https://ancient-inlet-96238.herokuapp.com/";
+const attomUrl = "https://api.gateway.attomdata.com/propertyapi/v1.0.0/property/detail";
+const attomKey = "8a279a2a7dc166a55daf34eb8f22782e";
 
 function formatQueryParams(params) {
     
@@ -13,7 +15,55 @@ function formatQueryParams(params) {
 
 }
 
-function getPlaces(stateCode, city, numResults) {
+function getZipcodePlaces(address) {
+
+  const formAddress = encodeURIComponent(address);
+  const url = attomUrl + "?address=" + formAddress;
+
+  fetch(url, {
+    headers: {
+      apikey: attomKey
+    }
+  })
+  .then(response => {
+    if (response.ok) {
+      return response.json
+    }
+    throw new Error(response.statusText)
+  })
+  .then(responseJson => displayZipcodePlaces(responseJson))
+  .catch(error => {
+    $('.result-title').removeClass('hidden');
+    $('.result-title').text(`Something went wrong: ${error.message}`)
+  })
+
+}
+
+function getAddressPlaces(streetAddress) {
+
+  const formAddress = encodeURIComponent(streetAddress);
+  const url = attomUrl + "?address=" + formAddress;
+
+  console.log(url);
+  fetch(url, {
+    headers: {
+      apikey: attomKey
+    }
+  })
+  .then(response => {
+    if (response.ok) {
+      return response.json
+    }
+    throw new Error(response.statusText);
+  })
+  .then(responseJson => displayAddress(responseJson))
+  .catch(error => {
+    $('.result-title').removeClass('hidden');
+    $('.result-title').text(`Something went wrong: ${error.message}`);
+  });
+}
+
+function getCityPlaces(stateCode, city, numResults) {
 
     const formCity = encodeURIComponent(city);
     const url = mashvisorUrlPlaces + stateCode + '/' + formCity;
@@ -203,7 +253,7 @@ function formEvent() {
         const stateCode = $('#state-search').val();
         // const numResults = $('#js-num-results').val();
         console.log(stateCode, city);
-        getPlaces(stateCode, city);
+        getCityPlaces(stateCode, city);
         getStats(stateCode, city);
     });
 
