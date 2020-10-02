@@ -1,4 +1,4 @@
-
+/* General Styling Elements */
 
 header {
 
@@ -15,12 +15,95 @@ body {
     
 }
 
+h1 {
+
+    margin-left: 0;
+    padding-left: 1em;
+    margin-top: 0;
+    font-size: 1.5em;
+    color: #e63946;
+
+}
+
+.top {
+
+    background-color: #1D3557;
+    margin: 0;
+    padding: 0;
+    text-align: left;
+
+}
+
+.container {
+
+    background-color: #f1faee;
+
+}
+
+main {
+
+    background-color: #457B9D;
+
+}
+
+/* Input Form Styling */
+
+#js-form {
+
+    justify-content: inherit;
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    color: #1d3557;
+    
+
+}
+
 form {
 
     display: inline-block;
     margin: 1em auto 1em auto;
     
+    
 }
+
+.start-form {
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: #f1faee;
+    
+}
+
+.input-fields {
+
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+
+}
+/* State Code Box - Small */
+.small-fields {
+
+    width: 15%;
+    display: inline-block;
+    margin-bottom: 1.5em;
+
+}
+
+
+/* Intro Text */
+
+.intro-text {
+
+    width: 100%;
+    color: #1d3557;
+
+}
+
+
 
 ul {
 
@@ -35,57 +118,7 @@ ul {
 
 }
 
-.start-form {
-
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-
-}
-
-
-
-.top {
-
-    background-color: wheat;
-    margin: 0;
-    padding: 0;
-    text-align: left;
-
-}
-
-h1 {
-
-    margin-left: 0;
-    padding-left: 1em;
-    margin-top: 0;
-    font-size: 1.5em;
-
-}
-
-.intro-text {
-
-    margin-left: 2em;
-    width: 100%;
-
-}
-
-.input-fields {
-
-    width: 30%;
-    display: flex;
-    flex-direction: column;
-    text-align: left;
-
-}
-
-.small-fields {
-
-    width: 15%;
-    display: inline-block;
-    margin-bottom: 1.5em;
-
-}
+/* Result Styling - Stats */
 
 .address {
 
@@ -137,11 +170,19 @@ section h2 {
 
 }
 
+#js-stats {
+
+    color: #fff;
+
+}
+
 .hidden {
 
     display: none;
 
 }
+
+/* Result Styling - Listings */
 
 .place {
 
@@ -149,6 +190,7 @@ section h2 {
     flex-direction: row;
     flex-wrap: wrap;
     text-align: center;
+    border: #1D3557;
 
 }
 
@@ -158,6 +200,7 @@ section h2 {
     flex-direction: row;
     align-items: center;
     justify-content: center;
+    
 
 }
 
@@ -183,3 +226,10 @@ section h2 {
     width: 150px;
 
 }
+
+#js-results {
+
+    color: #fff;
+
+}
+
