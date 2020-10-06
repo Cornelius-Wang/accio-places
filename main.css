@@ -95,6 +95,12 @@ form {
 
 }
 
+label#state-search {
+
+    margin-left: 0;
+
+}
+
 
 /* Intro Text */
 
@@ -281,6 +287,12 @@ section h2 {
     label {
 
         padding: 0 0.5em 0 .25em;
+
+    }
+
+    label#state-search {
+
+        margin-left: auto;
 
     }
 
