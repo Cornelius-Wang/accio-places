@@ -72,7 +72,7 @@ form {
 
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: center;
     background-color: #f1faee;
     
 }
@@ -282,13 +282,13 @@ section h2 {
 
     label {
 
-        padding: 0 0.5em 0 .25em;
+        padding: 0 0.5em 0 2em;
 
     }
 
     label#state-search {
 
-        margin-left: auto;
+        margin-left: 2em;
 
     }
 
