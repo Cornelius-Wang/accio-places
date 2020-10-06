@@ -85,7 +85,9 @@ form {
     text-align: left;
 
 }
+
 /* State Code Box - Small */
+
 .small-fields {
 
     width: 30%;
@@ -250,13 +252,6 @@ section h2 {
 
 @media all and (min-width: 800px) {
 
-    /* .container {
-
-        display: flex;
-        flex-direction: column;
-    
-    } */
-
     .input-fields {
 
         width: 40%;
@@ -266,6 +261,7 @@ section h2 {
     
     }
     /* State Code Box - Small */
+
     .small-fields {
     
         width: 15%;

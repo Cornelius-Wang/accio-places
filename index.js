@@ -1,67 +1,9 @@
 const mashvisorKey = "6875b662-8801-4be1-a329-391e54c2c507";
 const mashvisorUrlPlaces = "https://api.mashvisor.com/v1.1/client/city/properties/";
 const mashvisorUrlStats = "https://api.mashvisor.com/v1.1/client/city/investment/";
-const mapboxKey = "pk.eyJ1IjoiY29yeXdhbmcxMSIsImEiOiJja2RydmlhMWkwZnJxMndudXBsdGd2aDhtIn0.zlOoazi-NxpUgUbqoN_EZQ";
-const mapboxUrl = "";
 const proxyUrl = "https://ancient-inlet-96238.herokuapp.com/";
-const attomUrl = "https://api.gateway.attomdata.com/propertyapi/v1.0.0/property/detail";
-const attomKey = "8a279a2a7dc166a55daf34eb8f22782e";
 
-function formatQueryParams(params) {
-    
-    const queryItems = Object.keys(params)
-        .map(key => `${encodeURIComponent(key)}=${encodeURIComponent(params[key])}`)
-    return queryItems.join('&');
-
-}
-
-function getZipcodePlaces(address) {
-
-  const formAddress = encodeURIComponent(address);
-  const url = attomUrl + "?address=" + formAddress;
-
-  fetch(url, {
-    headers: {
-      apikey: attomKey
-    }
-  })
-  .then(response => {
-    if (response.ok) {
-      return response.json
-    }
-    throw new Error(response.statusText)
-  })
-  .then(responseJson => displayZipcodePlaces(responseJson))
-  .catch(error => {
-    $('.result-title').removeClass('hidden');
-    $('.result-title').text(`Something went wrong: ${error.message}`)
-  })
-
-}
-
-function getAddressPlaces(streetAddress) {
-
-  const formAddress = encodeURIComponent(streetAddress);
-  const url = attomUrl + "?address=" + formAddress;
-
-  console.log(url);
-  fetch(url, {
-    headers: {
-      apikey: attomKey
-    }
-  })
-  .then(response => {
-    if (response.ok) {
-      return response.json
-    }
-    throw new Error(response.statusText);
-  })
-  .then(responseJson => displayAddress(responseJson))
-  .catch(error => {
-    $('.result-title').removeClass('hidden');
-    $('.result-title').text(`Something went wrong: ${error.message}`);
-  });
-}
+// Get city listings
 
 function getCityPlaces(stateCode, city, numResults) {
 
@@ -102,26 +44,6 @@ function templatePlaceHtml(neighborhood, placeAddress, listPrice, size, baths, b
 
 }
 
-// function drawPlaceMap(latitude, longitude, number){
-
-//   let travereString = 'map-' + number.toString(); 
-//   console.log(latitude,longitude,travereString);
-
-//   L.map(travereString, {
-//     center: [latitude, longitude],
-//     zoom: 13
-//   })
-//   L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
-//     attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-//     maxZoom: 18,
-//     id: 'mapbox/streets-v11',
-//     tileSize: 512,
-//     zoomOffset: -1,
-//     accessToken: mapboxKey
-//   }).addTo(travereString);
-
-// }
-
 function loopPlace(placeObject) {
 
     $('#result-list').empty();
@@ -153,14 +75,14 @@ function loopPlace(placeObject) {
 }
 
 
-
-
 function displayPlaces(responseJson) {
     /* Set array as local variable */
     const placeObject = responseJson;
     loopPlace(placeObject);
     
 }
+
+//Get city stats
 
 function getStats(stateCode, city) {
 
@@ -204,6 +126,8 @@ function templateStatsHtml(avgPrice, sqft, totalProperties, occupancy, coc, rent
 
 }
 
+// Need to make numbers pretty
+
 function formatNumber(number) {
 
   var parts = number.toString().split(".");
@@ -245,6 +169,8 @@ function displayStats(responseJson) {
 
 }
 
+// Setting the listener
+
 function formEvent() {
 
     $('form').on('submit', function(event){
@@ -259,6 +185,7 @@ function formEvent() {
 
 }
 
+// Render document
 
 $(function start() {
     console.log('Done');
