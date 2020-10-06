@@ -5,6 +5,8 @@ Author: Cory Wang
 Summary: User inputs city and statecode and the app returns 4 listings alongside average data for properties in given city.
 
 ---
+<a href="https://cornelius-wang.github.io/accio-places/.">Link to live app</a>
+
 Screenshots
 
 Initial app
